@@ -33,3 +33,5 @@ module.exports = queryFilter = (params) => {
     }
     return "INVALID QUERY STRING"
 }
+
+//upset that I wrote this before realizing req.query was a thing M A D G E

@@ -2,19 +2,22 @@
 const express = require("express");
 const app = express();
 
+
 //mongoose stuff
 const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect('mongodb://localhost:27017/projectAPI');
 }
-const mongoSanitize = require("express-mongo-sanitize")
-app.use(mongoSanitize())
+
+
 const Project = require("./models/project.js")
 const sample = require("./utilities/sample.js")
 
-//I am so upset that there's a built in query parser that I did not find before I wrote mine M A D G E
-// const queryFilter = require("./queryFilter.js");
+
+const mongoSanitize = require("express-mongo-sanitize")
+app.use(mongoSanitize())
+
 
 app.get("/project", async (req, res) => {
     const options = req.query
@@ -24,15 +27,15 @@ app.get("/project", async (req, res) => {
 
         const project = await Project.find(options)
         const result = sample(project)
-        if (result.length !== 0) {
-            return res.send(result)
+        if (result) {
+            return res.json(result)
         }
         else {
-            return res.send("Uh oh, we couldn't find a project with those options.")
+            return res.json("Uh oh, we couldn't find a project with those options.")
         }
 
     } else {
-        res.send("Those parameters don't match anything we accept, sorry!")
+        res.json("Those parameters don't match anything we accept, sorry!")
     }
 })
 

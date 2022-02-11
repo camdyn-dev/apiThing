@@ -69,13 +69,13 @@ const goodProject = [
         lang: "javascript",
         guide: "N/A",
     },
-    // {
-    //     name: "",
-    //     type: "",
-    //     level: "",
-    //     lang: "",
-    //     guide: "",
-    // },
+    {
+        name: "Create a Public API with Node.JS!",
+        type: "api",
+        level: "intermediate",
+        lang: "javascript",
+        guide: "N/A",
+    },
     // {
     //     name: "",
     //     type: "",
