@@ -7,7 +7,6 @@ const ProjectSchema = new Schema({
     type: String,
     level: String,
     language: String,
-    guideInfo: String,
 })
 
 module.exports = mongoose.model("Project", ProjectSchema)
