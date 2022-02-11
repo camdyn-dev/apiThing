@@ -45,7 +45,7 @@ const goodProject = [
         name: "Replicate the famous 2048 game!",
         type: "gamedev",
         level: "intermediate",
-        lang: "javascript" || "python",
+        lang: "javascript",
         guide: "N/A",
     },
     // {
@@ -80,3 +80,14 @@ const goodProject = [
 
 ]
 
+const mongoose = require('mongoose');
+const Project = require('../models/project');
+main().catch(err => console.log(err));
+async function main() {
+    await mongoose.connect('mongodb://localhost:27017/projectAPI');
+}
+
+goodProject.forEach(async (proj) => {
+    const project = new Project(proj)
+    await project.save()
+})

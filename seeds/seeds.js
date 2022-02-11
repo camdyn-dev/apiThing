@@ -17,7 +17,7 @@ const inseminate = async () => {
             name: `${names[outOfThree]}`,
             type: `RegEx`,
             level: `${levels[outOfThree]}`,
-            language: `${lang[outOfThree]}`
+            lang: `${lang[outOfThree]}`
         })
         await project.save()
     }

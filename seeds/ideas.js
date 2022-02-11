@@ -2,7 +2,7 @@ module.exports.djPro = {
     name: "Build an e-commerce website with Django!",
     type: "webdev",
     level: "Intermediate",
-    language: "Python",
+    lang: "Python",
     guideInfo: "N/A"
 }
 

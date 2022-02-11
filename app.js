@@ -17,7 +17,7 @@ const sample = require("./utilities/sample.js")
 app.get("/project", async (req, res) => {
     const options = req.query
 
-    if ("type" in options || "level" in options || "language" in options) { //this will be a bitch to expand; makes sure at least one param is in there
+    if ("type" in options || "level" in options || "lang" in options) { //this will be a bitch to expand; makes sure at least one param is in there
         console.log(options)
 
         const project = await Project.find(options)
