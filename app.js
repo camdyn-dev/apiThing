@@ -8,6 +8,8 @@ main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect('mongodb://localhost:27017/projectAPI');
 }
+const mongoSanitize = require("express-mongo-sanitize")
+app.use(mongoSanitize())
 const Project = require("./models/project.js")
 const sample = require("./utilities/sample.js")
 

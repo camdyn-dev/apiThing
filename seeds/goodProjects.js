@@ -48,6 +48,27 @@ const goodProject = [
         lang: "javascript",
         guide: "N/A",
     },
+    {
+        name: "Build a bug tracker with Django!",
+        type: "webdev",
+        level: "intermediate",
+        lang: "python",
+        guide: "N/A",
+    },
+    {
+        name: "Build a bug tracker with Express!",
+        type: "webdev",
+        level: "intermediate",
+        lang: "javascript",
+        guide: "N/A",
+    },
+    {
+        name: "Build an e-commerce website with Express!",
+        type: "webdev",
+        level: "intermediate",
+        lang: "javascript",
+        guide: "N/A",
+    },
     // {
     //     name: "",
     //     type: "",
@@ -76,6 +97,21 @@ const goodProject = [
     //     lang: "",
     //     guide: "",
     // },
+    // {
+    //     name: "",
+    //     type: "",
+    //     level: "",
+    //     lang: "",
+    //     guide: "",
+    // },
+    // {
+    //     name: "",
+    //     type: "",
+    //     level: "",
+    //     lang: "",
+    //     guide: "",
+    // },
+
 
 
 ]
@@ -87,7 +123,14 @@ async function main() {
     await mongoose.connect('mongodb://localhost:27017/projectAPI');
 }
 
-goodProject.forEach(async (proj) => {
-    const project = new Project(proj)
-    await project.save()
-})
+const inseminate = async () => {
+    console.log("BEGIN INSEMINATION")
+    await Project.deleteMany()
+
+    goodProject.forEach(async (proj) => {
+        const project = new Project(proj)
+        await project.save()
+    })
+    console.log("INSEMINATION FINISHED")
+}
+inseminate()
