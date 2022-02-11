@@ -24,6 +24,6 @@ module.exports.levels = [
 module.exports.lang = [
     "Javascript",
     "Python",
-    "C#"
+    "CSharp"
 ]
 

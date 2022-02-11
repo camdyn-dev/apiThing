@@ -8,15 +8,17 @@ main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect('mongodb://localhost:27017/projectAPI');
 }
-
+const Project = require("./models/project.js")
 
 //I am so upset that there's a built in query parser that I did not find before I wrote mine M A D G E
 // const queryFilter = require("./queryFilter.js");
 
-app.get("/project", (req, res) => {
+app.get("/project", async (req, res) => {
     const options = req.query
-    console.log(options)
-    res.send(options)
+    const project = await Project.find(options)
+    console.log(project.length)
+    res.send(project)
+
 })
 
 app.listen(3000, () => {
