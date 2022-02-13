@@ -52,7 +52,7 @@
         <h4 class="text-center">Here's the basics of how it works</h4>
         <hr>
 
-        <h5><code>/project/any</code></h5>
+        <h5><code>https://cam-project-api.herokuapp.com/project/any</code></h5>
         <p>Return a project of any type, any level and any language, in the following format;</p>
         <p><code class="holder">
                 name: <span>name of project</span>,
@@ -70,21 +70,21 @@
         <h4>Single option</h4>
 
         <h5><code>
-            /project/type=(x)
+            https://cam-project-api.herokuapp.com/project/type=(x)
         </code></h5>
         <p>Return a project of a specified type. Current types are; webdev, regex, api</p>
         <br>
-        <h5><code>/project/level=(x)</code></h5>
+        <h5><code>https://cam-project-api.herokuapp.com/project/level=(x)</code></h5>
         <p>Return a project of a specified level. Current levels are; beginner, intermediate, advanced</p>
         <br>
-        <h5><code>/project/lang=(x)</code></h5>
+        <h5><code>https://cam-project-api.herokuapp.com/project/lang=(x)</code></h5>
         <p>Return a project for a specific language. Current languages are; javascript, python</p>
         <hr>
         <h4>Multiple options</h4>
         <p>The above options can be combined for a more specific search result, for example;</p>
-        <h5><code>/project/?type=webdev&lang=python</code></h5>
+        <h5><code>https://cam-project-api.herokuapp.com/project/?type=webdev&lang=python</code></h5>
         <p>will return a web development project in python, like an ecommerce website with Django! Or,</p>
-        <h5><code>/project/?lang=javascript&level=advanced</code></h5>
+        <h5><code>https://cam-project-api.herokuapp.com/project/?lang=javascript&level=advanced</code></h5>
         <p>will return an advanced Javascript project!</p>
         <hr>
         <p>Currently, requests are limited to 25 per IP every 15 minutes. I dunno if that's way underperforming or not,
@@ -105,7 +105,7 @@
         const holder = document.querySelector(".holder")
 
         anyButton.addEventListener("click", async (e) => {
-            const data = await fetch("http://localhost:3000/project?any", {
+            const data = await fetch("https://cam-project-api.herokuapp.com/project?any", {
                 mode: "cors"
             })
             const response = await data.json()
