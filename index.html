@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        #navBrand {
+            font-size: xx-large;
+        }
+
+        #startText {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: large;
+        }
+
+        pre {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        code {
+            margin-bottom: 1%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="d-flex justify-content-center container-fluid">
+            <span class="navbar-brand mb-0 h1" id="navBrand">projectAPI</span>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <h3 class="text-center">Hey!</h3>
+
+        <p id="startText">This is a super basic API that gives you a programming project upon query. I was originally
+            planning on fleshing it out quite a bit, but decided to stop (for now) as I'm not sure
+            what's the best way to add projects in, and I didn't really want to do them by hand, one by one.
+            <br>
+
+
+        </p>
+        <h4 class="text-center">Here's the basics of how it works</h4>
+        <hr>
+
+        <h5><code>/project/any</code></h5>
+        <p>Return a project of any type, any level and any language, in the following format;</p>
+        <p><code class="holder">
+                name: <span>name of project</span>,
+                <br>
+                type: <span>type of project</span>,
+                <br>
+                level: <span>level of project</span>,
+                <br>
+                lang: <span>language of project</span>,
+                <br>
+                guide: <span>whether or not there's a guide</span>
+        </code></p>
+        <p><button id="anyButton" class="btn btn-block btn-outline-dark">Give it a shot!</button></p>
+        <hr>
+        <h4>Single option</h4>
+
+        <h5><code>
+            /project/type=(x)
+        </code></h5>
+        <p>Return a project of a specified type. Current types are; webdev, regex, api</p>
+        <br>
+        <h5><code>/project/level=(x)</code></h5>
+        <p>Return a project of a specified level. Current levels are; beginner, intermediate, advanced</p>
+        <br>
+        <h5><code>/project/lang=(x)</code></h5>
+        <p>Return a project for a specific language. Current languages are; javascript, python</p>
+        <hr>
+        <h4>Multiple options</h4>
+        <p>The above options can be combined for a more specific search result, for example;</p>
+        <h5><code>/project/?type=webdev&lang=python</code></h5>
+        <p>will return a web development project in python, like an ecommerce website with Django! Or,</p>
+        <h5><code>/project/?lang=javascript&level=advanced</code></h5>
+        <p>will return an advanced Javascript project!</p>
+        <hr>
+        <p>Currently, requests are limited to 25 per IP every 15 minutes. I dunno if that's way underperforming or not,
+            but I don't want it to get spammed since I ain't got that type of C A S H
+            <br>
+            <br>
+            Thanks for checking this out! It was fun to build!
+            <br>
+            -Camdyn
+        </p>
+
+
+    </div>
+
+
+    <script>
+        const anyButton = document.querySelector("#anyButton")
+        const holder = document.querySelector(".holder")
+
+        anyButton.addEventListener("click", async (e) => {
+            const data = await fetch("http://localhost:3000/project?any", {
+                mode: "cors"
+            })
+            const response = await data.json()
+            holder.innerHTML = ""
+            for (i = 1; i < Object.keys(response).length - 1; i++) { //I want it to cut off the first element (id) and last (val thing)
+                const hold = document.createElement("span")
+
+                const keyVals = Object.keys(response) //grabs the keyValues
+                const valVals = Object.values(response) //grabs the valueValues (yeah, great name I know)
+
+                hold.innerText = `${keyVals[i]}: ${valVals[i]} `
+                const br = document.createElement("br")
+                holder.append(hold)
+                holder.append(br)
+            }
+
+        })
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
