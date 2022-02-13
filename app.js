@@ -1,6 +1,7 @@
 //packages
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const rateLimit = require("express-rate-limit")
 const mongoose = require('mongoose');
 const mongoSanitize = require("express-mongo-sanitize")
@@ -30,7 +31,7 @@ const apiLimit = rateLimit({
 app.use(mongoSanitize())
 
 
-app.get("/project", apiLimit, async (req, res) => {
+app.get("/project", apiLimit, cors(), async (req, res) => {
     const options = req.query
 
     if ("type" in options || "level" in options || "lang" in options || "any" in options) { //this will be a bitch to expand; makes sure at least one param is in there
